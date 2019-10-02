@@ -65,7 +65,6 @@ def three():
 
 def four(start):
     session = Session(engine)
-    start = '2012-02-28' 
 
     resultsfour = list(session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
         filter(Measurement.date >= start).all()) 
@@ -77,9 +76,7 @@ def four(start):
 @app.route("/api/v1.0/<start>/<end>")
 def calc_temps(start,end):
     session = Session(engine)
-    start = '2012-02-28'
-    end = '2021-03-05'
-  
+ 
     
     resultsfive = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
         filter(Measurement.date >= start).filter(Measurement.date <= end).all()
